@@ -1,13 +1,11 @@
 from rest_framework import serializers
 from .models import User, AppInfo
 
-# Для виводу інформації про додаток (Емблема, Опис)
 class AppInfoSerializer(serializers.ModelSerializer):
     class Meta:
         model = AppInfo
         fields = ['name', 'description', 'logo']
 
-# Для реєстрації (Ім'я, Email, Стать, Дата народження)
 class RegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
 
@@ -25,7 +23,6 @@ class RegisterSerializer(serializers.ModelSerializer):
         )
         return user
 
-# Для перегляду профілю
 class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
