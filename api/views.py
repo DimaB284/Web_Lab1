@@ -4,7 +4,6 @@ from rest_framework.decorators import api_view
 from .models import User, AppInfo, Game
 from .serializers import RegisterSerializer, UserProfileSerializer, AppInfoSerializer
 
-# Обов'язкові функції [cite: 23, 24]
 class AppInfoView(generics.RetrieveAPIView):
     queryset = AppInfo.objects.all()
     serializer_class = AppInfoSerializer
@@ -19,7 +18,6 @@ class UserProfileView(generics.RetrieveAPIView):
     queryset = User.objects.all()
     serializer_class = UserProfileSerializer
 
-# Робоча функція додатка: Постріл у Морському Бою [cite: 27, 39]
 @api_view(['POST'])
 def make_shot(request, game_id):
     try:
@@ -33,7 +31,7 @@ def make_shot(request, game_id):
         return Response({
             "status": "success",
             "shot": coordinate,
-            "message": "Постріл зафіксовано"
+            "message": "Shot has been completed!"
         })
     except Game.DoesNotExist:
-        return Response({"error": "Гру не знайдено"}, status=404)
+        return Response({"error": "Game not found"}, status=404)
