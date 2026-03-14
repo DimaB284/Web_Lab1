@@ -10,5 +10,5 @@
 Додаток реалізує API для гри "Морський бій", включаючи реєстрацію користувачів, профілі та базову логіку пострілів.
 
 ## Посилання
-* **Звіт:** 
-* **GitHub:** 
+* **Звіт:** https://docs.google.com/document/d/1a5-hQW1Jlnk6j_JwC4Ykh8crLOX35qq5iJPuwRc7_AY/edit?pli=1&tab=t.0
+* **GitHub:** https://github.com/DimaB284/Web_Lab1/tree/main 
