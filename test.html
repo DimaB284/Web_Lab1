@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Battleship -- Socket Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        #log { background: #f4f4f4; padding: 10px; height: 200px; overflow-y: scroll; border: 1px solid #ccc; }
+    </style>
+</head>
+<body>
+    <h2>Battleship -- Test</h2>
+    
+    <input type="text" id="coordInput" placeholder="Enter Coordinate">
+    <button onclick="sendShot()">Fire!</button>
+
+    <h3>Battle history:</h3>
+    <ul id="log"></ul>
+
+    <script>
+        const socket = new WebSocket('ws://127.0.0.1:8000/ws/game/');
+
+        socket.onopen = function(e) {
+            console.log("Connection Succeeded!");
+        };
+
+        socket.onmessage = function(e) {
+            const data = JSON.parse(e.data);
+            const log = document.getElementById('log');
+            const newLi = document.createElement('li');
+            newLi.textContent = data.message;
+            log.appendChild(newLi);
+        };
+
+        function sendShot() {
+            const input = document.getElementById('coordInput');
+            const coord = input.value;
+            
+            socket.send(JSON.stringify({
+                'coordinate': coord
+            }));
+            
+            input.value = ''; 
+        }
+    </script>
+</body>
+</html>
