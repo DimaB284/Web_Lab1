@@ -25,12 +25,13 @@ SECRET_KEY = 'django-insecure-3nmbpuk6_km=2uo0e1c(jc&b!t!@6remx990p#=yvqvtj@(u^$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'daphne',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,6 +41,7 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'api',
+    'channels',
 ]
 
 MIDDLEWARE = [
@@ -120,3 +122,11 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 AUTH_USER_MODEL = 'api.User'
+
+ASGI_APPLICATION = 'battleship_core.asgi.application'
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer"
+    }
+}
